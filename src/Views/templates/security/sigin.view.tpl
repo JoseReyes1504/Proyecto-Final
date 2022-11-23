@@ -1,30 +1,23 @@
-<section class="fullCenter">
-  <form class="grid" method="post" action="index.php?page=sec_register">
-    <section class="depth-1 row col-12 col-m-8 offset-m-2 col-xl-6 offset-xl-3">
-      <h1 class="col-12">Crea tu cuenta</h1>
-    </section>
-    <section class="depth-1 py-5 row col-12 col-m-8 offset-m-2 col-xl-6 offset-xl-3">
-      <div class="row">
-        <label class="col-12 col-m-4 flex align-center" for="txtEmail">Correo Electrónico</label>
-        <div class="col-12 col-m-8">
-          <input class="width-full" type="email" id="txtEmail" name="txtEmail" value="{{txtEmail}}" />
-        </div>
+  <div class="Box25">
+    <form method="post" action="index.php?page=sec_register">
+      <div class="Formulario2">
+        <h1>CREAR CUENTA</h1>
+        <p>Paraíso para los amantes de los libros</p>
+        <label for="Correo" style="color: #aaa;">Nombre de usuario o correo</label><br>
+        <input class="TextBox" type="email" id="txtEmail2" name="txtEmail2" value="{{txtEmail}}"><br>
         {{if errorEmail}}
         <div class="error col-12 py-2 col-m-8 offset-m-4">{{errorEmail}}</div>
         {{endif errorEmail}}
-      </div>
-      <div class="row">
-        <label class="col-12 col-m-4 flex align-center" for="txtPswd">Contraseña</label>
-        <div class="col-12 col-m-8">
-          <input class="width-full" type="password" id="txtPswd" name="txtPswd" value="{{txtPswd}}" />
-        </div>
+
+        <label for="Contraseña" style="color: #aaa;">Contraseña</label><br>
+        <input type="password" class="TextBox" autocomplete="off" id="txtPswd2" name="txtPswd2" value="{{txtPswd}}"><br>
+
         {{if errorPswd}}
         <div class="error col-12 py-2 col-m-8 offset-m-4">{{errorPswd}}</div>
         {{endif errorPswd}}
+
+        <input type="submit" class="Boton2" id="btnCrearCuenta" value="Crear Cuenta">
+        <input type="button" class="Boton3" id="btnCancelar" value="Cancelar" onclick="IrAtras()">
       </div>
-      <div class="row right flex-end px-4">
-        <button class="primary" id="btnSignin" type="submit">Crear Cuenta</button>
-      </div>
-    </section>
-  </form>
-</section>
+    </form>
+  </div>

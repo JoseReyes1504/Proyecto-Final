@@ -17,8 +17,8 @@ class Register extends PublicController
     {
 
         if ($this->isPostBack()) {
-            $this->txtEmail = $_POST["txtEmail"];
-            $this->txtPswd = $_POST["txtPswd"];
+            $this->txtEmail = $_POST["txtEmail2"];
+            $this->txtPswd = $_POST["txtPswd2"];
             //validaciones
             if (!(Validators::IsValidEmail($this->txtEmail))) {
                 $this->errorEmail = "El correo no tiene el formato adecuado";

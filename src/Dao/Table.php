@@ -2,6 +2,8 @@
 
 namespace Dao;
 
+use PDO;
+
 /**
  * Clase base para todos los modelos de datos
  */
@@ -21,16 +23,23 @@ abstract class Table
         "double"  => \PDO::PARAM_STR,
         "string" => \PDO::PARAM_STR,
         "array" => \PDO::PARAM_STR,
-        "object" => \PDO::PARAM_STR,
+        "object" => \PDO::PARAM_STR,        
         "resource" => \PDO::PARAM_STR,
         "NULL" => \PDO::PARAM_NULL,
         "unknown type" => \PDO::PARAM_STR
     );
+
     protected static function getBindType($value)
     {
-        $valueType = gettype($value);
+        $valueType = gettype($value);                             
+        if($valueType == "string" && strlen($value) >  256){                                                                                                
+            return \PDO::PARAM_LOB;
+        }   
 
-        return self::$_bindMapping[$valueType];
+        return self::$_bindMapping[$valueType];       
+
+        
+        
         /*
         "boolean"
         "integer"
@@ -99,7 +108,7 @@ abstract class Table
             $pConn = self::getConn();
         }
         $query = $pConn->prepare($sqlstr);
-        foreach ($params as $key => &$value) {
+        foreach ($params as $key => &$value){
             $query->bindParam(":" . $key, $value, self::getBindType($value));
         }
         return $query->execute();

@@ -13,7 +13,7 @@ class Login extends \Controllers\PublicController
     {
         if ($this->isPostBack()) {
             $this->txtEmail = $_POST["txtEmail"];
-            $this->txtPswd = $_POST["txtPswd"];
+            $this->txtPswd = $_POST["txtPswd"];            
 
             if (!\Utilities\Validators::IsValidEmail($this->txtEmail)) {
                 $this->errorEmail = "¡Correo no tiene el formato adecuado!";

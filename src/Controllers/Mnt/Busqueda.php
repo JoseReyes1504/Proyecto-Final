@@ -21,7 +21,7 @@ class Busqueda extends PublicController
             $Libros['Imagen64'] = "data:image/jpg;base64," . base64_encode($Libros['Imagen']);
             $this->viewData["LibrosEncontrados"][] = $Libros;
         }
-        
+        $this->processView();
         error_log(json_encode($this->viewData));      
         Renderer::render('mnt/busqueda', $this->viewData);
     }    
@@ -32,10 +32,12 @@ class Busqueda extends PublicController
         $this->viewData = array();
         $this->viewData["mode"] = "";                        
         //Datos del libro
+        $this->viewData["Titulo"] = "";
         $this->viewData["Busqueda"] = '';
 
         $this->arrModeDesc = array(
             "DSP" => "Detalle de %s %s",
+            "ALL" => "Todos Los Libros",
         );
     }
 
@@ -59,6 +61,20 @@ class Busqueda extends PublicController
         }
     }
 
-}
+    private function processView()
+    {        
+            if ($this->viewData["mode"] === "DSP") {
+                $this->viewData["readonly"] = true;
+                $this->viewData["showBtn"] = false;                
+                $this->viewData["Titulo"] = "Resultados";
+            }
 
-?>
+            if ($this->viewData["mode"] === "ALL") {
+                $this->viewData["Titulo"] = "Todos Los Libros";
+            }
+     
+        $this->viewData["crsf_token"] = md5(getdate()[0] . $this->name);
+        $_SESSION[$this->name . "crsf_token"] = $this->viewData["crsf_token"];
+    }
+
+}

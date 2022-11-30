@@ -58,7 +58,8 @@
 }
 
 
-.MSJ, .BarraBusqueda{
+.MSJ,
+.BarraBusqueda {
     position: absolute;
     right: 0%;
     width: 700px;
@@ -67,20 +68,20 @@
     height: 85%;
     display: flex;
     justify-content: center;
-    align-items: center;    
-    overflow: hidden;    
+    align-items: center;
+    overflow: hidden;
     color: white;
     /* background-color: red; */
     border-radius: 10px;
 }
 
-.BarraBusqueda{
+.BarraBusqueda {
     width: 300px;
     margin-right: 4%;
     /* background-color: red; */
 }
 
-.BarraBusqueda input{
+.BarraBusqueda input {
     outline: none;
     background-color: transparent;
     border: 2px solid white;
@@ -90,51 +91,54 @@
     border-radius: 10px;
 }
 
-.BarraBusqueda svg{    
+.BarraBusqueda svg {
     fill: white;
     cursor: pointer;
     margin: auto;
 }
 
 
-.MSJ svg{
+.MSJ svg {
     fill: white;
     cursor: pointer;
     position: absolute;
-    right: 0%;    
+    right: 0%;
     margin-right: 10%;
     transition: all 400ms;
 }
 
-#SvgBooks{
-    margin-right: 15%;
+#SvgBooks {
+    margin-right: 10%;
 }
 
-#SvgFavorites{
+#SvgFavorites {
     margin-right: 5%;
 }
 
-svg:hover, #SvgBooks:hover, #SvgCarrito:hover {
+svg:hover,
+#SvgBooks:hover,
+#SvgCarrito:hover {
     fill: #3496db;
 }
 
-.ContenidoLibro2 svg:hover{
+.ContenidoLibro2 svg:hover {
     fill: #3496db;
     cursor: pointer;
 }
 
-.MSJ p {    
+.MSJ p {
     transition: all 800ms;
-    font-size: 18px;    
+    font-size: 18px;
     margin-top: 2%;
     transform: translateY(var(--MSJHeader));
     text-transform: uppercase;
 }
 
-.burbuja, .burbuja2{    
+.burbuja,
+.burbuja2 {
     position: absolute;
     width: 20px;
-    height: 20px;    
+    height: 20px;
     border-radius: 20px;
     display: flex;
     right: 0%;
@@ -145,35 +149,36 @@ svg:hover, #SvgBooks:hover, #SvgCarrito:hover {
     background-color: red;
 }
 
-.burbuja2{
-    margin-right: 7.5%;
+.burbuja2 {
+    margin-right: 2.5%;
 }
 
-.burbuja p, .burbuja2 p{
+.burbuja p,
+.burbuja2 p {
     position: relative;
     color: white;
     width: 100%;
     height: 100%;
     text-align: center;
-    margin-top: 60%;    
+    margin-top: 60%;
     font-size: 15px;
     transform: translateY(0);
 }
 
-.burbuja2 p{
+.burbuja2 p {
     margin-right: 5%;
 }
 
-.Modal{
+.Modal {
     position: absolute;
     right: 0%;
     width: 1000px;
     height: 550px;
     margin: 0.4% 0%;
-    margin-right: 20%;    
-    display: flex;       
+    margin-right: 20%;
+    display: flex;
     flex-direction: column;
-    overflow: hidden;    
+    /* overflow: hidden; */
     color: white;
     background-color: #181818;
     border-radius: 10px;
@@ -182,7 +187,9 @@ svg:hover, #SvgBooks:hover, #SvgCarrito:hover {
     z-index: 0;
     transform: translateY(var(--MSJModal));
 }
-.Acciones, .Acciones2{
+
+.Acciones,
+.Acciones2 {
     width: 100%;
     height: 15%;
     display: flex;
@@ -192,9 +199,9 @@ svg:hover, #SvgBooks:hover, #SvgCarrito:hover {
     transition: all 800ms;
     /* background-color: red; */
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-} 
+}
 
-.Acciones2{
+.Acciones2 {
     justify-content: center;
     align-items: center;
     height: 15%;
@@ -202,35 +209,35 @@ svg:hover, #SvgBooks:hover, #SvgCarrito:hover {
     /* background-color: blue; */
 }
 
-.TituloLibro{
+.TituloLibro {
     width: 90%;
     height: 60px;
     text-align: center;
     /* background-color: blue; */
 }
 
-.Acciones svg{
+.Acciones svg {
     fill: white;
     transition: all 800ms;
     cursor: pointer;
 }
 
-.Acciones svg:hover{
+.Acciones svg:hover {
     fill: #3496db;
 }
 
-#btnFavorite{
+#btnFavorite {
     position: absolute;
     right: 0%;
     margin-right: 2%;
 }
 
-#btnFavorite:hover{
+#btnFavorite:hover {
     fill: red;
 }
 
-.ContenedorContenido{
-    width: 100%;    
+.ContenedorContenido {
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: 68%;
@@ -240,28 +247,30 @@ svg:hover, #SvgBooks:hover, #SvgCarrito:hover {
 }
 
 
-.ContenidoLibro2, .ContenidoInformacionModal{
+.ContenidoLibro2,
+.ContenidoInformacionModal {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 62%;    
+    height: 62%;
     padding: 1%;
     /* background-color: blue; */
 }
 
-#txtContenido{
+#txtContenido {
     overflow-y: scroll;
     /* background-color: red; */
 }
 
-.ContenidoLibro2{
-    width: 100%;    
-    height: 38%;   
+.ContenidoLibro2 {
+    width: 100%;
+    height: 38%;
     flex-wrap: wrap;
     /* background-color: blue; */
 }
-.ContenedorContenido svg{
+
+.ContenedorContenido svg {
     fill: white;
 }
 
@@ -274,7 +283,7 @@ svg:hover, #SvgBooks:hover, #SvgCarrito:hover {
     width: 1200px;
     height: 800px;
     margin: 5% 2%;
-    background-color: transparent;    
+    background-color: transparent;
 }
 
 .ContenedorImagen {
@@ -316,28 +325,15 @@ svg:hover, #SvgBooks:hover, #SvgCarrito:hover {
     flex-direction: column;
     margin-left: var(--Margin-left);
     transition: all 800ms;
-    z-index: 1;    
+    z-index: 1;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 
-.Box h1{
+.Box h1 {
     margin-top: 4.1%;
 }
 
-.Box25 {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    color: #181818;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-left: var(--Margin-left);
-    transition: all 800ms;    
-}
 
 .TextBox {
     width: 80%;
@@ -362,13 +358,33 @@ svg:hover, #SvgBooks:hover, #SvgCarrito:hover {
     /* background-color: #181818; */
 }
 
+.Box25 {
+    position: relative;
+    width: 50%;
+    height: 70%;
+    color: #181818;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 3% auto;
+    transition: all 800ms;
+}
+
 
 .Formulario2 {
     width: 100%;
-    height: 40%;
-    margin-top: 5%;
-    padding: 1%;
-    margin-left: 20%;
+    height: 80%;
+    /* background-color: red; */
+}
+
+.Form2 {
+    width: 80%;
+    height: auto;
+    padding: 2%;
+    margin-left: 15%;
+    /* background-color: #3496db; */
 }
 
 .Boton,
@@ -388,9 +404,9 @@ svg:hover, #SvgBooks:hover, #SvgCarrito:hover {
     transition: all 400ms;
 }
 
-.Boton1{
+.Boton1 {
     position: absolute;
-    z-index: -1;      
+    z-index: -1;
 }
 
 .Boton2,
@@ -457,4 +473,16 @@ hr {
 p a {
     color: #9ebcae;
     cursor: pointer;
+}
+
+.imgModal {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    right: 0%;
+    margin: -9% 5%;
+    bottom: 0%;    
+    /* margin: 1%; */
+    /* background-image: url("../imgs/ZNeb.gif"); */
+    background-size: cover;
 }

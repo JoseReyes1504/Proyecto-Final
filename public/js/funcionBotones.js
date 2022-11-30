@@ -6,6 +6,10 @@ function Add() {
     location.href = "index.php?page=Mnt-addlibro&mode=INS";
 }
 
+function AddRoll() {
+    location.href = "index.php?page=Mnt-addlibro&mode=INS";
+}
+
 function Edit(ID) {
     location.href = "index.php?page=Mnt-addlibro&mode=UPD&id=" + ID;
 }
@@ -19,11 +23,11 @@ function Carrito() {
 }
 
 function MisLibros() {
-    location.href = "index.php?page=mnt-libros";
+    location.href = "index.php?page=mnt-mislibros";
 }
 
 function Explorar() {
-    location.href = "index.php?page=Mnt-busqueda";
+    location.href = "index.php?page=Mnt-busqueda&mode=ALL";
 }
 
 function Registro(){
@@ -173,12 +177,6 @@ var BotonToque = 0;
 var SeccionToque = 0;
 var Seccion3Toque = 0;
 
-function MSJ(msj) {
-    style.setProperty('--MSJHeader', '0px');
-    document.getElementById('Msj').innerHTML = msj;
-    document.getElementById('CarritoCantidad').innerHTML = Cantidad;
-    setTimeout(OcultarMSJ, 3000);
-}
 
 function Agregar(libro, ID) {
     Cantidad++;
@@ -225,6 +223,12 @@ document.getElementById('btnFavorite').onclick = function () {
     // MSJ('Favorito ID: ' + document.getElementById('btnFavorite').value);
 }
 
+function MSJ(msj) {
+    style.setProperty('--MSJHeader', '0px');
+    document.getElementById('Msj').innerHTML = msj;    
+    setTimeout(OcultarMSJ, 3000);
+}
+
 function OcultarModal() {
     style.setProperty('--MSJModal', '-600px');
 }
@@ -259,6 +263,15 @@ function Secciones(Seccion) {
             break;
     }
 }
+
+// function MostrarBienvenida(){
+//     const a = 1;
+//     if(a == 1){
+//         MSJ("Bienvenida")
+//     }
+// }
+
+// window.onload = MostrarBienvenida();
 
 
 function MoverTotal() {

@@ -1,5 +1,5 @@
 <section class="ContenedorSeccionSeparador">
-    <p>Busqueda De Libro</p>
+    <p>{{Titulo}}</p>
 </section>
 
 <input type="hidden" name="mode" value="{{mode}}" />

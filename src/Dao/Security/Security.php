@@ -47,8 +47,9 @@ class Security extends \Dao\Table
         return self::obtenerRegistros($sqlstr, array());
     }
 
-    static public function newUsuario($email, $password)
+    static public function newUsuario($email, $password, $Usuario)
     {
+
         if (!\Utilities\Validators::IsValidEmail($email)) {
             throw new Exception("Correo no es válido");
         }
@@ -65,13 +66,16 @@ class Security extends \Dao\Table
         unset($newUser["userpswdchg"]);
 
         $newUser["useremail"] = $email;
-        $newUser["username"] = "John Doe";
+        $newUser["username"] = $Usuario;
         $newUser["userpswd"] = $hashedPassword;
         $newUser["userpswdest"] = Estados::ACTIVO;
         $newUser["userpswdexp"] = date('Y-m-d', time() + 7776000);  //(3*30*24*60*60) (m d h mi s)
         $newUser["userest"] = Estados::ACTIVO;
         $newUser["useractcod"] = hash("sha256", $email.time());
-        $newUser["usertipo"] = UsuarioTipo::PUBLICO;
+        $newUser["usertipo"] = "PBL";
+
+        // $ultimoCodigo = $this->UltimoUsuario();
+        // die();
 
         $sqlIns = "INSERT INTO `usuario` (`useremail`, `username`, `userpswd`,
             `userfching`, `userpswdest`, `userpswdexp`, `userest`, `useractcod`,
@@ -80,8 +84,22 @@ class Security extends \Dao\Table
             ( :useremail, :username, :userpswd,
             now(), :userpswdest, :userpswdexp, :userest, :useractcod,
             now(), :usertipo);";
-
+        
         return self::executeNonQuery($sqlIns, $newUser);
+    }
+
+    static public function createRol($UserId){
+        
+        $newusuarioRol = self::_roleStruct();
+        
+        $newusuarioRol["usercod"] = $UserId;
+        $newusuarioRol["rolescod"] = UsuarioTipo::PUBLICO;
+        $newusuarioRol["roleuserest"] = Estados::ACTIVO;
+        $newusuarioRol["roleuserfch"] = date('Y-m-d', time());
+        $newusuarioRol["roleuserexp"] = date('Y-m-d', time() + 77776000);
+
+        $sqlIns2 = "insert into roles_usuarios (`usercod` , `rolescod`, `roleuserest`, `roleuserfch`, `roleuserexp`) VALUES( :usercod, :rolescod, :roleuserest, :roleuserfch, :roleuserexp)";        
+        return self::executeNonQuery($sqlIns2, $newusuarioRol);
 
     }
 
@@ -100,7 +118,7 @@ class Security extends \Dao\Table
             $password,
             \Utilities\Context::getContextByKey("PWD_HASH")
         );
-    }
+    }  
 
     static private function _hashPassword($password)
     {
@@ -132,6 +150,19 @@ class Security extends \Dao\Table
             "usertipo"     => "",
         );
     }
+
+    
+    static private function _roleStruct()
+    {
+        return array(
+            "usercod"      => "",
+            "rolescod"    => "",
+            "roleuserest"     => "",
+            "roleuserfch"     => "",
+            "roleuserexp"   => "",
+        );
+    }
+
 
     static public function getFeature($fncod)
     {
@@ -179,6 +210,14 @@ class Security extends \Dao\Table
         return count($featuresList) > 0;
     }
 
+    public static function getRoles($rolescod)
+    {
+        $sqlstr = "SELECT * FROM roles where rolescod= :rolescod";
+        $sqlParams = array("rolescod" => $rolescod);
+        return self::obtenerUnRegistro($sqlstr, $sqlParams);
+    }
+
+
     static public function addNewRol($rolescod, $rolesdsc, $rolesest)
     {
         $sqlins = "INSERT INTO `roles` (`rolescod`, `rolesdsc`, `rolesest`)
@@ -223,6 +262,19 @@ class Security extends \Dao\Table
         return $resultados;
     }
 
+    static public function getUsuarioById($userCod)
+    {
+        $sqlstr = "select * from usuario 
+        where usercod=:usercod;";
+        $resultados = self::obtenerUnRegistro(
+            $sqlstr,
+            array(
+                "usercod" => $userCod
+            )
+        );
+        return $resultados;
+    }
+
     static public function removeRolFromUser($userCod, $rolescod)
     {
         $sqldel = "UPDATE roles_usuarios set roleuserest='INA' 
@@ -242,6 +294,13 @@ class Security extends \Dao\Table
             array("fncod" => $fncod, "rolescod" => $rolescod)
         );
     }
+
+    static public function AllRolls()
+    {
+        $sqldel = "select * from roles";        
+        return self::obtenerRegistros($sqldel, array());
+    }
+
     static public function getUnAssignedFeatures($rolescod)
     {
         

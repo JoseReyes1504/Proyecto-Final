@@ -4,7 +4,7 @@ namespace Dao\Mnt;
 
 use Dao\Table;
 
-class Carrito extends Table
+class Pasarela extends Table
 {
     public static function ObtenerIdProducto(int $ID)
     {

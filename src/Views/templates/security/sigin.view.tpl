@@ -1,13 +1,16 @@
   <div class="Box25">
-    <form method="post" action="index.php?page=sec_register">
+    <form method="post" action="index.php?page=sec_register" class="Form2">
       <div class="Formulario2">
         <h1>CREAR CUENTA</h1>
         <p>Paraíso para los amantes de los libros</p>
-        <label for="Correo" style="color: #aaa;">Nombre de usuario o correo</label><br>
+        <label for="Correo" style="color: #aaa;">Correo</label><br>
         <input class="TextBox" type="email" id="txtEmail2" name="txtEmail2" value="{{txtEmail}}"><br>
         {{if errorEmail}}
         <div class="error col-12 py-2 col-m-8 offset-m-4">{{errorEmail}}</div>
         {{endif errorEmail}}
+
+        <label for="Nombre Usuario" style="color: #aaa;">Nombre de usuario</label><br>
+        <input class="TextBox" type="text" id="txtUsuario" name="txtUsuario" value="{{txtUsuario}}"><br>
 
         <label for="Contraseña" style="color: #aaa;">Contraseña</label><br>
         <input type="password" class="TextBox" autocomplete="off" id="txtPswd2" name="txtPswd2" value="{{txtPswd}}"><br>

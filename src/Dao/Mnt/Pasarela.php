@@ -6,21 +6,21 @@ use Dao\Table;
 
 class Pasarela extends Table
 {
-    public static function ObtenerIdProducto(int $ID)
+    public static function ObtenerLibro(int $ID)
     {
         $sqlstr = "
-        SELECT * FROM carrito where IDProducto = :ID";
+        SELECT * FROM carrito where Libro = :ID";
         $sqlParams = array("ID" => $ID);
         return self::obtenerUnRegistro($sqlstr, $sqlParams);
     }
 
 
-    public static function insert($IDProducto, $NombreProducto)
+    public static function insert($Libro, $Usuario)
     {
-        $sqlstr = "INSERT INTO `Carrito` (`IDProducto`, `NombreProducto`) VALUES (:IDProducto, :NombreProducto)";
+        $sqlstr = "INSERT INTO `Carrito` (`Libro`, `Usuario`) VALUES (:Libro, :Usuario)";
         $sqlParams = [
-            "IDProducto" => $IDProducto,
-            "NombreProducto" => $NombreProducto,
+            "Libro" => $Libro,
+            "Usuario" => $Usuario,
         ];
         return self::executeNonQuery($sqlstr, $sqlParams);
     }

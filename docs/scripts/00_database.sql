@@ -1,1 +1,1 @@
-CREATE SCHEMA `libros` ;
+CREATE DATABASE `libros` ;

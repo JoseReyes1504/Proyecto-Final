@@ -14,12 +14,18 @@ function Edit(ID) {
     location.href = "index.php?page=Mnt-addlibro&mode=UPD&id=" + ID;
 }
 
+
+function Historial(ID) {
+    location.href = "index.php?page=Mnt-historial&id=" + ID;
+}
+
+
 function Delete(ID) {
     location.href = "index.php?page=Mnt-addlibro&mode=DEL&id=" + ID;
 }
 
-function Carrito() {
-    location.href = "index.php?page=mnt-carrito";
+function Pasarela() {
+    location.href = "index.php?page=mnt-pasarela";
 }
 
 function MisLibros() {

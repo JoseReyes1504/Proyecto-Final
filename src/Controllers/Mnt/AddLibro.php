@@ -107,7 +107,7 @@ class AddLibro extends PublicController
         if (
             isset($_SESSION[$this->name . "crsf_token"])
             && $_SESSION[$this->name . "crsf_token"] !== $this->viewData["crsf_token"]
-        ) {
+        ) {            
             \Utilities\Site::redirectToWithMsg(
                 "index.php?page=mnt_libros",
                 "ERROR: Algo inesperado sucedió con la petición Intente de nuevo."

@@ -1,17 +1,7 @@
-<section class="ContenedorCompras">
-    <div class="Caja1">
-        {{foreach CargarNumeroLibros}}            
-        <p>Carrito ({{LibrosCarrito}} Libros)</p>
-            {{endfor CargarNumeroLibros}}        
-    </div>
-    <div class="Caja2">
-        <a href="index.php?page=mnt-index">Continuar Comprando</a>
-    </div>
-</section>
 
 <section class="Detalle">
     <div class="BoxSvg">
-        <p>Productos en carrito</p>
+        <p>Producto</p>
         <svg xmlns="http://www.w3.org/2000/svg" onclick="MoverTotal()" height="24" width="24">
             <path d="m12 10-1.4-1.4L12.175 7H8V5h4.175l-1.6-1.6L12 2l4 4ZM7 22q-.825 0-1.412-.587Q5 20.825 5 20q0-.825.588-1.413Q6.175 18 7 18t1.412.587Q9 19.175 9 20q0 .825-.588 1.413Q7.825 22 7 22Zm10 0q-.825 0-1.412-.587Q15 20.825 15 20q0-.825.588-1.413Q16.175 18 17 18t1.413.587Q19 19.175 19 20q0 .825-.587 1.413Q17.825 22 17 22ZM1 4V2h3.275l4.25 9h7l3.9-7H21.7l-4.4 7.95q-.275.5-.738.775Q16.1 13 15.55 13H8.1L7 15h12v2H7q-1.125 0-1.713-.975-.587-.975-.037-1.975L6.6 11.6 3 4Z" />
         </svg>
@@ -69,7 +59,7 @@
         </div>
 
         <div class="OpcionesBox">
-            <label for="eliminar">Eliminar Del Carrito</label>
+            <label for="eliminar">Cancelar Compra</label>
             <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" id="Trash">
                 <path d="M11.125 35Q10 35 9.188 34.188q-.813-.813-.813-1.98V9.167H6.667V6.375h8V5h10.666v1.375h8v2.792h-1.708v23.041q0 1.125-.813 1.959Q30 35 28.875 35Zm17.75-25.833h-17.75v23.041h17.75ZM15.208 28.708h2.75V12.625h-2.75Zm6.834 0h2.75V12.625h-2.75ZM11.125 9.167v23.041Z" />
             </svg>            

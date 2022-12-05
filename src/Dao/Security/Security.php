@@ -171,6 +171,16 @@ class Security extends \Dao\Table
         return count($featuresList) > 0;
     }
 
+    
+
+    static public function getFeatureRoles($rolescod)
+    {
+        $sqlstr = "SELECT * from funciones_roles where rolescod=:rolescod;";
+        $sqlParams = array("rolescod"=>$rolescod);
+        return self::obtenerRegistros($sqlstr, $sqlParams);
+    }
+
+
     static public function addNewFeature($fncod, $fndsc, $fnest, $fntyp )
     {
         $sqlins = "INSERT INTO `funciones` (`fncod`, `fndsc`, `fnest`, `fntyp`)
@@ -231,6 +241,18 @@ class Security extends \Dao\Table
                 "rolesest" => $rolesest
             )
         );
+    }
+
+    static public function UpdateRol($rolescod, $rolesdsc, $rolesest)
+    {
+        $sqlstr = "UPDATE set `roles` = :rolescod, `rolesdsc`= :rolesdsc `rolesest` = :rolesest where ";
+        $sqlParams =
+            array(
+                "rolescod" => $rolescod,
+                "rolesdsc" => $rolesdsc,
+                "rolesest" => $rolesest
+            );       
+        return self::executeNonQuery($sqlstr, $sqlParams);
     }
 
     static public function isUsuarioInRol($userCod, $rolescod)

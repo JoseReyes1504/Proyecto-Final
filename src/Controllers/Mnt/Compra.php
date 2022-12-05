@@ -71,6 +71,7 @@ class Compra extends PublicController
     private function procesarPost()
     {        
         \Utilities\ArrUtils::mergeArrayTo($_POST, $this->viewData);
+        
         if (
             isset($_SESSION[$this->name . "crsf_token"])
             && $_SESSION[$this->name . "crsf_token"] !== $this->viewData["crsf_token"]

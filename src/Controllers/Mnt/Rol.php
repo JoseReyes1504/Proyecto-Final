@@ -25,6 +25,8 @@ class Rol extends PublicController
             $this->procesarPost();
         }
 
+        $this->viewData["Funciones"] = Seguridad::getFeatureRoles($this->viewData["rolescod"]);
+
         $this->processView();
         Renderer::render('mnt/rol', $this->viewData);
     }
@@ -125,7 +127,17 @@ class Rol extends PublicController
                     }
                     break;
                 case 'UPD':
-
+                    // $result = Seguridad::UpdateRol(
+                    //     $this->viewData["rolescod"],
+                    //     $this->viewData["rolesdsc"],
+                    //     $this->viewData["rolesest"],
+                    // );
+                    // if ($result) {
+                    //     \Utilities\Site::redirectToWithMsg(
+                    //         "index.php?page=mnt_roles",
+                    //         "el rol se actualizo Satisfactoriamente!"
+                    //     );
+                    // }
                     break;
                 case 'DEL':
                     

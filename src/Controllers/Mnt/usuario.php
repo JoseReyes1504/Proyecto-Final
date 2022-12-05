@@ -4,7 +4,6 @@ namespace Controllers\Mnt;
 
 use Controllers\PublicController;
 use Dao\Security\Security as Seguridad;
-use Dao\Mnt\Libros as DaoLibros;
 use Utilities\Validators;
 use Views\Renderer;
 
@@ -57,7 +56,7 @@ class Usuario extends PublicController
         $this->viewData["useremail"] = '';
         $this->viewData["username"] = '';
         $this->viewData["userest"] = '';
-        $this->viewData["usertipo"] = '';           
+        $this->viewData["usertipo"] = '';                   
 
         $this->arrModeDesc = array(
             "INS" => "",
@@ -111,91 +110,30 @@ class Usuario extends PublicController
             );
         }
 
-        $this->CampoVacio("Titulo");
-        $this->CampoVacio("Autor");
-        $this->CampoVacio("Genero");
-        $this->CampoVacio("Idioma");
-        $this->CampoVacio("Precio");
-        $this->CampoVacio("Fecha");
+        $this->CampoVacio("Correo");
+        $this->CampoVacio("Usuario");
+        $this->CampoVacio("Estado");
+        $this->CampoVacio("TipoUsuario");        
 
-
-        if (!$this->hasErrors) {
-            $result = null;
-            $Imagen = null;
-            $Imagen2 = null;
-            
+        if (!$this->hasErrors) {            
             switch ($this->viewData["mode"]) {
-                case 'INS':
-                    $Imagen = $_FILES['image']['tmp_name'];
-                    $imgContent = (file_get_contents($Imagen));
+                case 'INS':                    
 
-                    if ($this->viewData["chkMostrar"] == "ACT" && $this->viewData["chkPublicidad"] == "NOACT") {
-                        $imgContent2 = null;                        
-                    } else {                                                
-                        $Imagen2 = $_FILES['image2']['tmp_name'];
-                        $imgContent2 = (file_get_contents($Imagen2));
-                        
-                    }
-
-                    $result = DaoLibros::insert(
-                        $imgContent,
-                        $imgContent2,
-                        $this->viewData["Titulo"],
-                        $this->viewData["Autor"],
-                        $this->viewData["Contenido"],
-                        $this->viewData["Fecha"],
-                        $this->viewData["Genero"],
-                        $this->viewData["Idioma"],
-                        $this->viewData["Precio"],
-                        $this->viewData["chkPublicidad"]
-                    );
-                    if ($result) {
-                        \Utilities\Site::redirectToWithMsg(
-                            "index.php?page=mnt_libros",
-                            "el Libro se ha Guardado Satisfactoriamente!"
-                        );
-                    }
                     break;
-                case 'UPD':
-                    $Imagen = $_FILES['image']['tmp_name'];
-                    $imgContent = (file_get_contents($Imagen));
+                case 'UPD':                
+                    // $result = Seguridad::removeRolFromUser(
+                    //     $this->viewData["usercod"],
 
-                    if ($this->viewData["chkMostrar"] == "ACT" && $this->viewData["chkPublicidad"] == "NOACT") {
-                        $imgContent2 = null;
-                    } else {
-                        $Imagen2 = $_FILES['image2']['tmp_name'];
-                        $imgContent2 = (file_get_contents($Imagen2));
-                    }
-                    $result = DaoLibros::update(
-                        $imgContent,
-                        $imgContent2,
-                        $this->viewData["Titulo"],
-                        $this->viewData["Autor"],
-                        $this->viewData["Contenido"],
-                        $this->viewData["Genero"],
-                        $this->viewData["Idioma"],
-                        $this->viewData["Precio"],
-                        $this->viewData["Fecha"],
-                        $this->viewData["chkPublicidad"],
-                        intval($this->viewData["ID"])
-                    );
-                    if ($result) {
-                        \Utilities\Site::redirectToWithMsg(
-                            "index.php?page=mnt_libros",
-                            "el Libro se ha Actualizado Satisfactoriamente"
-                        );
-                    }
+                    // );
+                    // if ($result) {
+                    //     \Utilities\Site::redirectToWithMsg(
+                    //         "index.php?page=mnt_usuarios",
+                    //         "el Libro se ha Actualizado Satisfactoriamente"
+                    //     );
+                    // }
                     break;
                 case 'DEL':
-                    $result = DaoLibros::delete(
-                        intval($this->viewData["ID"])
-                    );
-                    if ($result) {
-                        \Utilities\Site::redirectToWithMsg(
-                            "index.php?page=mnt_libros",
-                            "el Libro se ha Eliminado Satisfactoriamente"
-                        );
-                    }
+                    
                     break;
             }
         }

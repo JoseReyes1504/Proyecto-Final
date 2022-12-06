@@ -28,6 +28,14 @@ function Pasarela() {
     location.href = "index.php?page=mnt-pasarela";
 }
 
+function DeletePasarela(ID) {
+    location.href = "index.php?page=Mnt-pasarela&mode=DEL&id=" + ID;
+}
+
+function EnviarAMisLibros(ID) {
+    location.href = "index.php?page=Mnt-pasarela&mode=ADD&id=" + ID;
+}
+
 function MisLibros() {
     location.href = "index.php?page=mnt-mislibros";
 }

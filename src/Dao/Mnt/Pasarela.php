@@ -17,7 +17,18 @@ class Pasarela extends Table
 
     public static function insert($Libro, $Usuario)
     {
-        $sqlstr = "INSERT INTO `Carrito` (`Libro`, `Usuario`) VALUES (:Libro, :Usuario)";
+        $sqlstr = "INSERT INTO `Carrito` (`ID`, `Libro`, `Usuario`) VALUES (:Libro, :Libro, :Usuario)";
+        $sqlParams = [
+            "Libro" => $Libro,
+            "Usuario" => $Usuario,
+        ];
+        return self::executeNonQuery($sqlstr, $sqlParams);
+    }
+
+    
+    public static function Delete($Libro, $Usuario)
+    {
+        $sqlstr = "delete from carrito where Libro = :Libro and Usuario = :Usuario";
         $sqlParams = [
             "Libro" => $Libro,
             "Usuario" => $Usuario,

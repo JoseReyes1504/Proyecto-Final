@@ -6,6 +6,13 @@ use Dao\Table;
 
 class MisLibros extends Table
 {
+    public static function Insert($Libro, $Usuario)
+    {
+        $sqlstr = "INSERT INTO mislibros (`ID`, `IdLibro`,`IdUsuario`) VALUES(:Libro, :Libro, :Usuario)";
+        $sqlParams = array("Libro" => $Libro, "Usuario" => $Usuario);
+        return self::executeNonQuery($sqlstr, $sqlParams);
+    }
+
     public static function ObtenerMisLibros(int $ID)
     {
         $sqlstr = "

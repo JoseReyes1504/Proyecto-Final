@@ -6,8 +6,8 @@
         </div>
     </div>
     <form action="index.php?page=mnt_compra" method="post">
-        <input type="hidden" name="crsf_token" value="{{crsf_token}}" />
-        <input type="hidden" name="mode" value="{{mode}}" />
+        <input type="hidden" name="crsf_token" value="{{~crsf_token}}" />
+        <input type="hidden" name="mode" value="{{~mode}}" />
         <input type="hidden" name="ID" value="{{ID}}" />
         
         <div class="ContenedorinforCompra">

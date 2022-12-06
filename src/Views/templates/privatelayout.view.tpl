@@ -34,11 +34,7 @@
   <div class="Header">
     <div class="Logo">
       <a href="index.php?page=mnt-index">Ebooks</a>
-    </div>
-    {{with login}}
-      <label for="">{{userId}}</label>
-      <span class="username">{{userName}} <a style="color: white;" href="index.php?page=sec_logout"><i class="fas fa-sign-out-alt"></i></a></span>      
-      {{endwith login}}
+    </div>    
     <div class="BarraBusqueda">
       <input type="text" placeholder="Buscar Libro (Titulo, Autor, Genero)" onfocus="this.placeholder=''"
         onblur="this.placeholder='Buscar Libro (Titulo, Autor, Genero)'" id="txtSearch" autocomplete="off">

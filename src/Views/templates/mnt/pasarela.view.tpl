@@ -1,4 +1,3 @@
-
 <section class="Detalle">
     <div class="BoxSvg">
         <p>Producto</p>
@@ -9,7 +8,7 @@
 
     {{foreach CargarCarrito}}
     <div class="BoxDetalle">
-        
+
         <div class="imgDetalle" style="background-image: url({{Imagen64}});"></div>
         <div class="BoxInformacion">
             <div class="Cajita">
@@ -44,7 +43,9 @@
                 <p>{{Genero}}</p>
             </div>
             <div class="Cajita">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M14 13q-1.25 0-2.125-.875T11 10q0-1.25.875-2.125T14 7q1.25 0 2.125.875T17 10q0 1.25-.875 2.125T14 13Zm-7 3q-.825 0-1.412-.588Q5 14.825 5 14V6q0-.825.588-1.412Q6.175 4 7 4h14q.825 0 1.413.588Q23 5.175 23 6v8q0 .825-.587 1.412Q21.825 16 21 16Zm2-2h10q0-.825.587-1.413Q20.175 12 21 12V8q-.825 0-1.413-.588Q19 6.825 19 6H9q0 .825-.588 1.412Q7.825 8 7 8v4q.825 0 1.412.587Q9 13.175 9 14Zm11 6H3q-.825 0-1.412-.587Q1 18.825 1 18V7h2v11h17ZM7 14V6v8Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                    <path d="M14 13q-1.25 0-2.125-.875T11 10q0-1.25.875-2.125T14 7q1.25 0 2.125.875T17 10q0 1.25-.875 2.125T14 13Zm-7 3q-.825 0-1.412-.588Q5 14.825 5 14V6q0-.825.588-1.412Q6.175 4 7 4h14q.825 0 1.413.588Q23 5.175 23 6v8q0 .825-.587 1.412Q21.825 16 21 16Zm2-2h10q0-.825.587-1.413Q20.175 12 21 12V8q-.825 0-1.413-.588Q19 6.825 19 6H9q0 .825-.588 1.412Q7.825 8 7 8v4q.825 0 1.412.587Q9 13.175 9 14Zm11 6H3q-.825 0-1.412-.587Q1 18.825 1 18V7h2v11h17ZM7 14V6v8Z" />
+                </svg>
                 <h3>Precio</h3>
                 <p>{{Precio}}</p>
             </div>
@@ -60,22 +61,22 @@
 
         <div class="OpcionesBox">
             <label for="eliminar">Cancelar Compra</label>
-            <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" id="Trash">
+            <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" id="Trash" onclick="DeletePasarela({{ID}})">
                 <path d="M11.125 35Q10 35 9.188 34.188q-.813-.813-.813-1.98V9.167H6.667V6.375h8V5h10.666v1.375h8v2.792h-1.708v23.041q0 1.125-.813 1.959Q30 35 28.875 35Zm17.75-25.833h-17.75v23.041h17.75ZM15.208 28.708h2.75V12.625h-2.75Zm6.834 0h2.75V12.625h-2.75ZM11.125 9.167v23.041Z" />
-            </svg>            
-        </div>        
+            </svg>
+        </div>
     </div>
     {{endfor CargarCarrito}}
 
 
-
+    {{if Loggeado}}
     <div class="BoxTotal">
         <div class="Box1Total">
             <p>Total</p>
-        </div>        
+        </div>
         <div class="Box2Total">
-            {{foreach CargarTotal}}            
-                <p>{{Total}}.lps</p>            
+            {{foreach CargarTotal}}
+            <p>{{Total}}.lps</p>
             {{endfor CargarTotal}}
         </div>
     </div>
@@ -91,6 +92,7 @@
                     .cls-1 {
                         fill: #009ee3;
                     }
+
                     .cls-1,
                     .cls-2,
                     .cls-3 {
@@ -107,7 +109,8 @@
                 </style>
             </defs>
             <title>paypal-seeklogo.com</title>
-            <path class="cls-1" d="M192.95,386.87h38.74c20.8,0,28.63,10.53,27.42,26-2,25.54-17.44,39.67-37.92,39.67H210.85c-2.81,0-4.7,1.86-5.46,6.9L201,488.74c-0.29,1.9-1.29,3-2.79,3.15H173.87c-2.29,0-3.1-1.75-2.5-5.54l14.84-93.93C186.79,388.66,188.85,386.87,192.95,386.87Z"
+            <path class="cls-1"
+                d="M192.95,386.87h38.74c20.8,0,28.63,10.53,27.42,26-2,25.54-17.44,39.67-37.92,39.67H210.85c-2.81,0-4.7,1.86-5.46,6.9L201,488.74c-0.29,1.9-1.29,3-2.79,3.15H173.87c-2.29,0-3.1-1.75-2.5-5.54l14.84-93.93C186.79,388.66,188.85,386.87,192.95,386.87Z"
                 transform="translate(-143.48 -354.54)" />
             <path class="cls-2" d="M361.14,385.13c13.07,0,25.13,7.09,23.48,24.76-2,21-13.25,32.62-31,32.67H338.11c-2.23,0-3.31,1.82-3.89,5.55l-3,19.07c-0.45,2.88-1.93,4.3-4.11,4.3H312.68c-2.3,0-3.1-1.47-2.59-4.76L322,390.29c0.59-3.76,2-5.16,4.57-5.16h34.54Zm-23.5,40.92h11.75c7.35-.28,12.23-5.37,12.72-14.55,0.3-5.67-3.53-9.73-9.62-9.7l-11.06.05-3.79,24.2h0Zm86.21,39.58c1.32-1.2,2.66-1.82,2.47-.34l-0.47,3.54c-0.24,1.85.49,2.83,2.21,2.83h12.82c2.16,0,3.21-.87,3.74-4.21l7.9-49.58c0.4-2.49-.21-3.71-2.1-3.71H436.32c-1.27,0-1.89.71-2.22,2.65l-0.52,3.05c-0.27,1.59-1,1.87-1.68.27-2.39-5.66-8.49-8.2-17-8-19.77.41-33.1,15.42-34.53,34.66-1.1,14.88,9.56,26.57,23.62,26.57,10.2,0,14.76-3,19.9-7.7h0ZM413.11,458c-8.51,0-14.44-6.79-13.21-15.11s9.19-15.11,17.7-15.11,14.44,6.79,13.21,15.11S421.63,458,413.11,458h0Zm64.5-44h-13c-2.68,0-3.77,2-2.92,4.46l16.14,47.26L462,488.21c-1.33,1.88-.3,3.59,1.57,3.59h14.61a4.47,4.47,0,0,0,4.34-2.13l49.64-71.2c1.53-2.19.81-4.49-1.7-4.49H516.63c-2.37,0-3.32.94-4.68,2.91l-20.7,30L482,416.82C481.46,415,480.11,414,477.62,414Z"
                 transform="translate(-143.48 -354.54)" />
@@ -135,7 +138,52 @@
         <input type="radio" name="MetodoPago" disabled id="PyxelPay" onchange="Rgb(3)">
         <p>Todavía no es posible realizar pagos mediante tarjetas de credito/debito</p>
     </div>
+    {{foreach CargarCarrito}}
     <div class="BotonTramite">
-        <button class="btnCompra" role="button">Realizar Compra</button>
+        <button class="btnCompra" role="button" onclick="EnviarAMisLibros({{ID}})">Realizar Compra</button>
     </div>
+    {{endfor CargarCarrito}}
+
+    {{endif Loggeado}}
+
+    {{if NoLoggeado}}
+    <div class="opciones">
+        <label style="color: #181818;">Ingrese su usuario para continuar la compra</label>
+    </div>
+  <div class="ContenedorFormulario" style="margin: auto;">
+    <form method="post" action="index.php?page=sec_login{{if redirto}}&redirto={{redirto}}{{endif redirto}}">
+      <div class="Box">
+        <h1>EBOOKS</h1>
+        <p>Un buen libro es más que una piedra preciosa</p>
+        <div class="Formulario">
+          <label for="txtEmail" style="color: #aaa;">Correo</label><br>
+          <input class="TextBox" type="email" id="txtEmail" name="txtEmail" value="{{txtEmail}}"><br>
+          {{if errorEmail}}
+          <div class="error col-12 py-2 col-m-8 offset-m-4">{{errorEmail}}</div>
+          {{endif errorEmail}}
+
+
+          <label for="txtPswd" style="color: #aaa;">Contraseña</label><br>
+          <input type="password" class="TextBox" autocomplete="off" id="txtPswd" name="txtPswd" value="{{txtPswd}}"><br>
+          {{if errorPswd}}
+          <div class="error col-12 py-2 col-m-8 offset-m-4">{{errorPswd}}</div>
+          {{endif errorPswd}}
+          {{if generalError}}
+          <div class="row">
+            {{generalError}}
+          </div>
+          {{endif generalError}}
+          <a href="">Olvidaste la contraseña?</a>
+        </div>
+
+        <input type="submit" class="Boton" id="btnLogin" value="Entrar">
+        <hr>
+    </form>
+    <p style="color: black;">Nuevo Lector? <a style="color: #3496db; text-decoration:underline;" id='Crear'
+        onclick="Registro()">crea tu cuenta</a></p>
+  </div>
+</div>
+    {{endif NoLoggeado}}
+
+
 </section>

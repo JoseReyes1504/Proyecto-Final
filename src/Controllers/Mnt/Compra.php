@@ -39,8 +39,7 @@ class Compra extends PublicController
     {
         $this->viewData = array();
         $this->viewData["mode"] = "";
-        $this->viewData['ID'] = "";
-        $this->viewData['Libro'] = "";
+        $this->viewData['ID'] = "";        
         $this->viewData["crsf_token"] = "";
 
         $this->arrModeDesc = array(
@@ -71,12 +70,12 @@ class Compra extends PublicController
     private function procesarPost()
     {        
         \Utilities\ArrUtils::mergeArrayTo($_POST, $this->viewData);
-        
+        error_log(json_encode($this->viewData));
         if (
             isset($_SESSION[$this->name . "crsf_token"])
             && $_SESSION[$this->name . "crsf_token"] !== $this->viewData["crsf_token"]
         ) {            
-            \Utilities\Site::redirectToWithMsg(
+            \Utilities\Site::redirectTo(
                 "index.php?page=mnt_index",
                 "ERROR: Algo inesperado sucedió con la petición Intente de nuevo."
             );
@@ -89,9 +88,8 @@ class Compra extends PublicController
                     \Utilities\Security::getUserId()  
                 );
                 if ($result) {
-                    \Utilities\Site::redirectToWithMsg(
-                        "index.php?page=mnt_pasarela",
-                        "se guardo en el carrito"
+                    \Utilities\Site::redirectTo(
+                        "index.php?page=mnt_pasarela"                        
                     );
                 }
                 break;

@@ -24,6 +24,7 @@ class Rol extends PublicController
         if ($this->isPostBack()) {
             $this->procesarPost();
         }
+        
         $UnaFuncion = Seguridad::getFeatureRoles($this->viewData["rolescod"]);
         
         foreach($UnaFuncion as $Funcion){
@@ -35,7 +36,7 @@ class Rol extends PublicController
          foreach($Funciones as $Funcion){
             $Funcion['FncodSg'] = str_replace('\\', '-', $Funcion["fncod"]);          
             $this->viewData["TodasFunciones"][] = $Funcion;            
-         }
+        }
 
         $this->processView();
         Renderer::render('mnt/rol', $this->viewData);
@@ -67,6 +68,7 @@ class Rol extends PublicController
 
         $this->arrModeDesc = array(
             "ADD" => "",
+            "INS" => "",
             "UPD" => "Editando %s %s",
             "DSP" => "Detalle de %s %s",
             "DEL" => "Eliminado %s %s"
@@ -95,8 +97,8 @@ class Rol extends PublicController
         }
 
         if (isset($_GET["Fncod"]) && isset($_GET["Rol"])) {
-             $fncod = $_GET["Fncod"];                        
-             $this->viewData["fncod"] = str_replace('-', '\\', $fncod);            
+             $fncod = $_GET["Fncod"];                                     
+             $this->viewData["fncod"] = str_replace('-', '\\', $fncod);                         
             $this->viewData["Rol"] =  $_GET["Rol"];
         }
 

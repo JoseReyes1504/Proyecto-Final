@@ -106,12 +106,10 @@ class Usuario extends PublicController
             }
             if ($this->viewData["mode"] === "DEL") {
                 $this->viewData["readonly"] = true;
-                $this->viewData["disabled"] = true;
-                $this->viewData["btnEnviarText"] = "Eliminar";
+                $this->viewData["disabled"] = true;                
             }
             if ($this->viewData["mode"] === "UPD") {
-                $this->viewData["readonly"] = false;                
-                $this->viewData["btnEnviarText"] = "Actualizar";
+                $this->viewData["readonly"] = false;                                
             }
         }
         $this->viewData["crsf_token"] = md5(getdate()[0] . $this->name);

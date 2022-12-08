@@ -8,6 +8,7 @@
         <div class="Box1">
             <fieldset style="position: absolute; left:0%; margin: 25% 5%">
                 <button class="btnCancelar" name="btnCancelar" id="btnCancelar" style="width: 200px; height: 100px">Cancelar</button>
+                <button class="btnEnviar" type="submit" name="btnEnviar">{{btnEnviarText}}</button>
             </fieldset>
             <label for="rolescod">Codigo del rol</label>
             <input type="text" autocomplete="off" {{if readonly}} readonly {{endif readonly}} name="rolescod"

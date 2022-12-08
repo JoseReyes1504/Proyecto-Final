@@ -9,6 +9,7 @@ class Roles extends PrivateController{
     {
         $viewData = array();
         $viewData["Roles"] = \Dao\Security\Security::AllRolls();
+        
         $viewData["CanInsert"] = self::isFeatureAutorized("Controllers\Mnt\Roles\New");
         $viewData["CanUpdate"] = self::isFeatureAutorized("Controllers\Mnt\Roles\Upd");
         $viewData["CanDelete"] = self::isFeatureAutorized("Controllers\Mnt\Roles\Del");

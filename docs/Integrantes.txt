@@ -4,3 +4,8 @@ Nombre: Adam Albert Garcia Montalvan
 No Cta: 1102 2000 00104
 Usuario Github: AdamFeldman504
 Correo: Adammontalvan@yahoo.com
+
+Nombre: Osman David Gómez Campos
+No Cta: 0601 2000 03874
+Usuario Github: OsmanGom
+Correo: Gomezosman05@gmail.com

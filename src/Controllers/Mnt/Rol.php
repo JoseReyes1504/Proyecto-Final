@@ -24,8 +24,18 @@ class Rol extends PublicController
         if ($this->isPostBack()) {
             $this->procesarPost();
         }
+        $UnaFuncion = Seguridad::getFeatureRoles($this->viewData["rolescod"]);
+        
+        foreach($UnaFuncion as $Funcion){
+            $Funcion['FncodSg'] = str_replace('\\', '-', $Funcion["fncod"]);          
+            $this->viewData["Funciones"][] = $Funcion;            
+        }
 
-        $this->viewData["Funciones"] = Seguridad::getFeatureRoles($this->viewData["rolescod"]);
+         $Funciones = Seguridad::AllFeatures();
+         foreach($Funciones as $Funcion){
+            $Funcion['FncodSg'] = str_replace('\\', '-', $Funcion["fncod"]);          
+            $this->viewData["TodasFunciones"][] = $Funcion;            
+         }
 
         $this->processView();
         Renderer::render('mnt/rol', $this->viewData);
@@ -52,8 +62,11 @@ class Rol extends PublicController
         $this->viewData["rolesdsc"] = '';
         $this->viewData["rolesest"] = '';
 
+        $this->viewData["fncod"] = '';
+        $this->viewData["Rol"] = '';
+
         $this->arrModeDesc = array(
-            "INS" => "",
+            "ADD" => "",
             "UPD" => "Editando %s %s",
             "DSP" => "Detalle de %s %s",
             "DEL" => "Eliminado %s %s"
@@ -79,6 +92,21 @@ class Rol extends PublicController
             $tpmRol = Seguridad::getRoles($this->viewData["rolescod"]);
             error_log(json_encode($tpmRol));
             \Utilities\ArrUtils::mergeFullArrayTo($tpmRol, $this->viewData);
+        }
+
+        if (isset($_GET["Fncod"]) && isset($_GET["Rol"])) {
+             $fncod = $_GET["Fncod"];                        
+             $this->viewData["fncod"] = str_replace('-', '\\', $fncod);            
+            $this->viewData["Rol"] =  $_GET["Rol"];
+        }
+
+        switch ($this->viewData["mode"]) {
+            case "ADD":                
+                Seguridad::InsertFunRol($this->viewData["Rol"], $this->viewData["fncod"]);                
+                break;
+            case "DEL":
+                Seguridad::removeFunFromRol($this->viewData["Rol"], $this->viewData["fncod"]);                
+                break;
         }
     }
 
@@ -126,22 +154,6 @@ class Rol extends PublicController
                         );
                     }
                     break;
-                case 'UPD':
-                    // $result = Seguridad::UpdateRol(
-                    //     $this->viewData["rolescod"],
-                    //     $this->viewData["rolesdsc"],
-                    //     $this->viewData["rolesest"],
-                    // );
-                    // if ($result) {
-                    //     \Utilities\Site::redirectToWithMsg(
-                    //         "index.php?page=mnt_roles",
-                    //         "el rol se actualizo Satisfactoriamente!"
-                    //     );
-                    // }
-                    break;
-                case 'DEL':
-                    
-                    break;
             }
         }
     }
@@ -154,10 +166,10 @@ class Rol extends PublicController
         } else {
             if ($this->viewData["mode"] === "DSP") {
                 $this->viewData["readonly"] = true;
-                $this->viewData["showBtn"] = false;                
+                $this->viewData["showBtn"] = false;
             }
             if ($this->viewData["mode"] === "DEL") {
-                $this->viewData["readonly"] = true;                
+                $this->viewData["readonly"] = true;
                 $this->viewData["btnEnviarText"] = "Eliminar";
             }
             if ($this->viewData["mode"] === "UPD") {

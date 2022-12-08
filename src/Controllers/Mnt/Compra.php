@@ -44,9 +44,22 @@ class Compra extends PublicController
 
         $this->arrModeDesc = array(
             "Compra" => "Detalle de %s %s",
-        );
+        );        
+    }    
+    
+    private function genera_codigo ($longitud) {
+        $caracteres = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+        $codigo = '';
+        for ($i = 1; $i <= $longitud; $i++) {
+            $codigo .= $caracteres[$this->numero_aleatorio(0, 35)];
+        }
+        return $codigo;
     }
-
+    
+    private function numero_aleatorio ($ninicial, $nfinal) {
+        $numero = rand($ninicial, $nfinal);
+        return $numero;
+    }
 
     private function procesarGet()
     {
@@ -79,18 +92,41 @@ class Compra extends PublicController
                 "index.php?page=mnt_index",
                 "ERROR: Algo inesperado sucedió con la petición Intente de nuevo."
             );
+        }                
+
+        if (isset($_SESSION['SesionAnonima'])){        
+            echo "Sesión Anonima: " . $_SESSION['SesionAnonima'];    
+        }else{            
+            $Codigo = $this->genera_codigo(6);
+            $_SESSION["SesionAnonima"] = $Codigo;
         }
 
         switch ($this->viewData["mode"]) {
             case 'Compra':
-                $result = DaoPasarela::insert(
-                    $this->viewData["ID"],
-                    \Utilities\Security::getUserId()  
-                );
-                if ($result) {
-                    \Utilities\Site::redirectTo(
-                        "index.php?page=mnt_pasarela"                        
+                $IdUser = \Utilities\Security::getUserId();
+
+                if($IdUser === 0){
+                    $Sesion = $_SESSION["SesionAnonima"];
+                    $result = DaoPasarela::insertAnon(
+                        $this->viewData["ID"],
+                        $IdUser,                        
+                        $Sesion
                     );
+                    if ($result) {
+                        \Utilities\Site::redirectTo(
+                            "index.php?page=mnt_pasarela"                        
+                        );
+                    }
+                }else{
+                    $result = DaoPasarela::insert(
+                        $this->viewData["ID"],
+                        $IdUser
+                    );
+                    if ($result) {
+                        \Utilities\Site::redirectTo(
+                            "index.php?page=mnt_pasarela"                        
+                        );
+                    }
                 }
                 break;
         }

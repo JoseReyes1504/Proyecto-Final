@@ -12,8 +12,11 @@ class MisLibros extends PrivateController
     public function run():void
     {                
         $userId = \Utilities\Security::getUserId();
+
         $MisLibros = DaoMisLibros::ObtenerMisLibros($userId);
+
         $this->viewData["CargarLibros"] = array();
+        
         foreach($MisLibros as $Lib){
             $Lib['Imagen64'] = "data:image/jpg;base64," . base64_encode($Lib['Imagen']);          
           $this->viewData["CargarLibros"][] = $Lib;

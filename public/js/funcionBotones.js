@@ -6,22 +6,34 @@ function Add() {
     location.href = "index.php?page=Mnt-addlibro&mode=INS";
 }
 
-function AddRoll() {
-    location.href = "index.php?page=Mnt-addlibro&mode=INS";
-}
-
 function Edit(ID) {
     location.href = "index.php?page=Mnt-addlibro&mode=UPD&id=" + ID;
 }
-
 
 function Historial(ID) {
     location.href = "index.php?page=Mnt-historial&id=" + ID;
 }
 
-
 function Delete(ID) {
     location.href = "index.php?page=Mnt-addlibro&mode=DEL&id=" + ID;
+}
+
+function AddRol(ID, Rol) {
+    location.href = "index.php?page=Mnt_usuario&mode=ADD&Rol="+ Rol +"&id=" + ID;
+}
+
+function DelRol(ID, Rol) {
+    location.href = "index.php?page=Mnt_usuario&mode=DEL&Rol="+ Rol +"&id=" + ID;
+}
+
+
+function AddFun(Rol, Fncod, ID) {
+    console.log(Fncod);    
+    location.href = "index.php?page=Mnt_rol&mode=ADD&Fncod="+ Fncod +"&Rol=" + Rol +"&id=" + ID;
+}
+
+function DelFun(Rol, Fncod, ID) {
+    location.href = "index.php?page=Mnt_rol&mode=DEL&Fncod="+ Fncod +"&Rol=" + Rol +"&id=" + ID;
 }
 
 function Pasarela() {
@@ -32,7 +44,7 @@ function DeletePasarela(ID) {
     location.href = "index.php?page=Mnt-pasarela&mode=DEL&id=" + ID;
 }
 
-function EnviarAMisLibros(ID) {
+function RealizarPedido(ID) {
     location.href = "index.php?page=Mnt-pasarela&mode=ADD&id=" + ID;
 }
 
@@ -50,6 +62,10 @@ function Registro(){
 
 function Visuzalizar(ID){
     location.href = "index.php?page=Mnt-visualizar&Libro=" + ID;
+}
+
+function VisorPDF(){
+    location.href = "index.php?page=mnt_visorpdf";
 }
 
 function IrAtras(){

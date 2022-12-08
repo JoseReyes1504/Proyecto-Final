@@ -11,19 +11,16 @@ class Usuario extends PublicController
 {
     private $viewData = array();
     private $arrModeDesc = array();
-    private $hasErrors = false;
+
 
     public function run(): void
     {
-        $this->init();        
+        $this->init();                
         // Cuando es método GET (se llama desde la lista)
         if (!$this->isPostBack()) {
             $this->procesarGet();
         }
 
-        if ($this->isPostBack()) {
-            $this->procesarPost();
-        }
         $this->viewData["TodosLosRoles"] = Seguridad::AllRolls();
         $this->viewData["RolesUsuario"] = Seguridad::getRolesByUsuario($this->viewData["usercod"]);
 
@@ -42,24 +39,16 @@ class Usuario extends PublicController
         $this->viewData["showBtn"] = true;
         $this->viewData["crsf_token"] = "";           
 
-        //Errores de campos vacios
-        $this->viewData["error_Titulo"] = array();
-        $this->viewData["error_Autor"] = array();
-        $this->viewData["error_Contenido"] = array();
-        $this->viewData["error_Genero"] = array();
-        $this->viewData["error_Idioma"] = array();
-        $this->viewData["error_Precio"] = array();
-        $this->viewData["error_Fecha"] = array();
-
         //Datos del usuario
-        $this->viewData["usercod"] = 0;
+        $this->viewData["Rol"] = "";
+        $this->viewData["usercod"] = "";        
         $this->viewData["useremail"] = '';
         $this->viewData["username"] = '';
         $this->viewData["userest"] = '';
         $this->viewData["usertipo"] = '';                   
 
         $this->arrModeDesc = array(
-            "INS" => "",
+            "ADD" => "",
             "UPD" => "Editando %s %s",
             "DSP" => "Detalle de %s %s",
             "DEL" => "Eliminado %s %s"
@@ -72,7 +61,7 @@ class Usuario extends PublicController
             $this->viewData["mode"] = $_GET["mode"];
 
             if (!isset($this->arrModeDesc[$this->viewData["mode"]])) {
-                error_log('Error: (Libros) Mode solicitado no existe.');
+                error_log('Error: (Usuarios) Mode solicitado no existe.');
                 \Utilities\Site::redirectToWithMsg(
                     "index.php?page=mnt_usuarios",
                     "No se puede procesar su solicitud!"
@@ -80,63 +69,28 @@ class Usuario extends PublicController
             }
         }
 
-        if ($this->viewData["mode"] !== "INS" && isset($_GET["id"])) {
-            $this->viewData["usercod"] = intval($_GET["id"]); 
+        if ($this->viewData["mode"] !== "INS" && isset($_GET["id"])) {                        
+            $this->viewData["usercod"] =  $_GET["id"];                                                           
             $tmpUsuario = Seguridad::getUsuarioById($this->viewData["usercod"]);
             error_log(json_encode($tmpUsuario));
             \Utilities\ArrUtils::mergeFullArrayTo($tmpUsuario, $this->viewData);           
-        }
-    }
+        }        
 
-    private function CampoVacio($Campo)
-    {
-        if (Validators::IsEmpty($this->viewData["$Campo"])) {
-            $this->viewData["error_$Campo"][]
-                = "El $Campo del libro es requerido";
-            $this->hasErrors = true;
-        }
-    }
+        if(isset($_GET["Rol"]) && isset($_GET["id"])){
+            $this->viewData["Rol"] = $_GET["Rol"];                        
+            $this->viewData["usercod"] =  intval($_GET["id"]);            
+        }        
 
-    private function procesarPost()
-    {
-        \Utilities\ArrUtils::mergeArrayTo($_POST, $this->viewData);
-        if (
-            isset($_SESSION[$this->name . "crsf_token"])
-            && $_SESSION[$this->name . "crsf_token"] !== $this->viewData["crsf_token"]
-        ) {
-            \Utilities\Site::redirectToWithMsg(
-                "index.php?page=mnt_usuarios",
-                "ERROR: Algo inesperado sucedió con la petición Intente de nuevo."
-            );
-        }
 
-        $this->CampoVacio("Correo");
-        $this->CampoVacio("Usuario");
-        $this->CampoVacio("Estado");
-        $this->CampoVacio("TipoUsuario");        
 
-        if (!$this->hasErrors) {            
-            switch ($this->viewData["mode"]) {
-                case 'INS':                    
-
-                    break;
-                case 'UPD':                
-                    // $result = Seguridad::removeRolFromUser(
-                    //     $this->viewData["usercod"],
-
-                    // );
-                    // if ($result) {
-                    //     \Utilities\Site::redirectToWithMsg(
-                    //         "index.php?page=mnt_usuarios",
-                    //         "el Libro se ha Actualizado Satisfactoriamente"
-                    //     );
-                    // }
-                    break;
-                case 'DEL':
-                    
-                    break;
-            }
-        }
+        switch($this->viewData["mode"]){
+            case "ADD":                                
+                Seguridad::InsertRolUser($this->viewData["usercod"],$this->viewData["Rol"]);                
+                break;                
+            case "DEL":                                                
+                Seguridad::removeRolFromUser($this->viewData["usercod"], $this->viewData["Rol"]);
+                break;
+        }                        
     }
 
     private function processView()

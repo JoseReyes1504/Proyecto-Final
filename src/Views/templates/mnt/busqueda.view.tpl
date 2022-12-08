@@ -10,7 +10,7 @@
      <div class="boxPopsAniBus">
             <div class="img256" style="background-image: url({{Imagen64}})"></div>
             <button class="btnAdd2" role="button" onclick="Agregar( '{{Titulo}}',{{ID}})"><span
-                    class="text">+</span><span>Agregar</span></button>
+                    class="text">$</span><span>Comprar</span></button>
                     <button class="btnAdd2" role="button" onclick="Favoritos('{{Titulo}}')"><span
                 class="text">♡</span><span>Favoritos</span></button>
             <button class="btnAdd2" role="button"

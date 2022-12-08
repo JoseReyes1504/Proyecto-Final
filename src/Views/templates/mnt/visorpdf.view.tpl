@@ -1,6 +1,1 @@
-<h1>Visor</h1>
-
-
-<iframe src="https://docs.google.com/gview?url=
-https://justbeamit.com/68hw7
-&embedded=true" style="width:100%; height:700px;" frameborder="0" ></iframe>
+<embed src="/{{BASE_DIR}}/public/pdf/George Orwell 1984.pdf" type="application/pdf" width="120%" height="700px" style="margin-left: -8%; margin-top: 2%;">

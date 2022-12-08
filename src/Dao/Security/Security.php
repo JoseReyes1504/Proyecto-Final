@@ -74,9 +74,6 @@ class Security extends \Dao\Table
         $newUser["useractcod"] = hash("sha256", $email.time());
         $newUser["usertipo"] = "PBL";
 
-        // $ultimoCodigo = $this->UltimoUsuario();
-        // die();
-
         $sqlIns = "INSERT INTO `usuario` (`useremail`, `username`, `userpswd`,
             `userfching`, `userpswdest`, `userpswdexp`, `userest`, `useractcod`,
             `userpswdchg`, `usertipo`)
@@ -297,13 +294,43 @@ class Security extends \Dao\Table
         return $resultados;
     }
 
+    static public function InsertRolUser($userCod, $rolescod)
+    {
+        $sqldel = "INSERT INTO roles_usuarios (`usercod`, `rolescod`)
+        VALUES (:usercod, :rolescod)";
+        return self::executeNonQuery(
+            $sqldel,
+            array("rolescod"=>$rolescod, "usercod"=>$userCod)
+        );        
+    }
+
+    static public function InsertFunRol($rolescod, $Funcion)
+    {        
+        $sqldel = "INSERT INTO `funciones_roles` (`rolescod`, `fncod`) VALUES (:rolescod, :Funcion);";
+        return self::executeNonQuery(
+            $sqldel,
+            array("rolescod"=>$rolescod, "Funcion"=>$Funcion)
+        );        
+    }
+
+
     static public function removeRolFromUser($userCod, $rolescod)
     {
-        $sqldel = "UPDATE roles_usuarios set roleuserest='INA' 
+        $sqldel = "DELETE FROM roles_usuarios
         where rolescod=:rolescod and usercod=:usercod;";
         return self::executeNonQuery(
             $sqldel,
             array("rolescod"=>$rolescod, "usercod"=>$userCod)
+        );
+    }
+
+    static public function removeFunFromRol($rolescod, $Funcion)
+    {
+        $sqldel = "DELETE FROM funciones_roles
+        where rolescod=:rolescod and fncod=:Funcion;";
+        return self::executeNonQuery(
+            $sqldel,
+            array("rolescod"=>$rolescod, "Funcion"=>$Funcion)
         );
     }
 
@@ -322,6 +349,15 @@ class Security extends \Dao\Table
         $sqldel = "select * from roles";        
         return self::obtenerRegistros($sqldel, array());
     }
+
+    static public function AllFeatures()
+    {
+        $sqldel = "select * from funciones";        
+        return self::obtenerRegistros($sqldel, array());
+    }
+
+
+
 
     static public function getUnAssignedFeatures($rolescod)
     {

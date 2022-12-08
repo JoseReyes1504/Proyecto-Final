@@ -17,6 +17,16 @@ class Historial extends Table
         return self::obtenerRegistros($sqlstr, $sqlParams);
     }
 
+    public static function insert($Libro, $Usuario)
+    {
+        $sqlstr = "INSERT INTO `transacciones` ( `Libro`, `Usuario`) VALUES (:Libro, :Usuario)";
+        $sqlParams = [
+            "Libro" => $Libro,
+            "Usuario" => $Usuario,
+        ];
+        return self::executeNonQuery($sqlstr, $sqlParams);
+    }
+
     public static function Total($Usuario){
         $sqlstr = "
         select sum(b.Precio) as Total from Transacciones a inner join LibrosInventario b

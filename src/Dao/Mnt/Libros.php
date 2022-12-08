@@ -70,6 +70,13 @@ class Libros extends Table
         return self::obtenerRegistros($sqlstr, $sqlParams);
     }
 
+    public static function obtenerLibro2(int $ID)
+    {
+        $sqlstr = "SELECT * from `librosinventario` where ID =:ID;";
+        $sqlParams = array("ID" => $ID);
+        return self::obtenerUnRegistro($sqlstr, $sqlParams);
+    }
+
     public static function buscarLibro($Nombre)
     {
         $sqlstr = "SELECT * from librosInventario

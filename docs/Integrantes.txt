@@ -9,3 +9,8 @@ Nombre: Osman David Gómez Campos
 No Cta: 0601 2000 03874
 Usuario Github: OsmanGom
 Correo: Gomezosman05@gmail.com
+
+Nombre: Roger Yovany Paz Velasquez
+No Cta: 1520 2001 00086
+Usuario Github: rogerPaz1213
+Correo: yobanyp64@gmail.com

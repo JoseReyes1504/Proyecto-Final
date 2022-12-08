@@ -9,3 +9,10 @@ Nombre: Osman David Gómez Campos
 No Cta: 0601 2000 03874
 Usuario Github: OsmanGom
 Correo: Gomezosman05@gmail.com
+
+
+Nombre: José Eduardo Reyes Suazo
+No Cta: 1504 2001 00088
+Usuario Github: JoseReyes1504
+Correo: eduardo.reyessuazo@gmail.com
+

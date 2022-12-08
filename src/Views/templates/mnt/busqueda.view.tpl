@@ -6,6 +6,7 @@
 <input type="hidden" name="Busqueda" value="{{Busqueda}}" />
 
 <section class="ContenedorDeBusqueda">       
+    
     {{foreach LibrosEncontrados}}    
      <div class="boxPopsAniBus">
             <div class="img256" style="background-image: url({{Imagen64}})"></div>
@@ -18,4 +19,5 @@
                     class="text">🟑</span><span>Detalles</span></button>
         </div>
     {{endfor LibrosEncontrados}}
+    
 </section>

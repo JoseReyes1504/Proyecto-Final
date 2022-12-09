@@ -16,6 +16,7 @@ class Busqueda extends PublicController
         }         
         
         $librosEncontrado = DaoLibro::buscarLibro($this->viewData["Busqueda"]);        
+        
         $this->viewData['LibrosEncontrados'] = array();
         foreach($librosEncontrado as $Libros){
             $Libros['Imagen64'] = "data:image/jpg;base64," . base64_encode($Libros['Imagen']);

@@ -115,7 +115,6 @@ class Pasarela extends PublicController
 
         switch ($this->viewData["mode"]) {
             case 'ADD':
-
                 $PayPalOrder = new \Utilities\Paypal\PayPalOrder(
                     "test" . (time() - 10000000),
                     "http://localhost/ProyectoFinal/index.php?page=mnt_index",
@@ -123,6 +122,7 @@ class Pasarela extends PublicController
                 );
                 $Precio = $this->Libro[0]["Precio"];
                 $Precio = round($Precio / 24.23);
+                
                 $PayPalOrder->addItem($this->Libro[0]["Titulo"], "Libro", "PRD1", $Precio, 0, 1, "DIGITAL_GOODS");
 
                 $_SESSION["ID"] = $this->viewData["ID"];                

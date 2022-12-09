@@ -15,6 +15,7 @@ class Index extends PublicController
         
         $LibrosPopulares = DaoLibro::LibrosPopulares();
         $this->viewData["LibrosPopulares"] = array();
+        
         foreach($LibrosPopulares as $librosPop){
           $librosPop['Imagen64'] = "data:image/jpg;base64," . base64_encode($librosPop['Imagen']);          
           $this->viewData["LibrosPopulares"][] = $librosPop;

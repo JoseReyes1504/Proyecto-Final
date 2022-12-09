@@ -10,6 +10,7 @@ No Cta: 0601 2000 03874
 Usuario Github: OsmanGom
 Correo: Gomezosman05@gmail.com
 
+<<<<<<< HEAD
 
 Nombre: José Eduardo Reyes Suazo
 No Cta: 1504 2001 00088
@@ -18,3 +19,9 @@ Correo: eduardo.reyessuazo@hotmail.com
 
 
 
+=======
+Nombre: Roger Yovany Paz Velasquez
+No Cta: 1520 2001 00086
+Usuario Github: rogerPaz1213
+Correo: yobanyp64@gmail.com
+>>>>>>> 97d7ab58c60341763bc8889abf3f3a498e42abc5

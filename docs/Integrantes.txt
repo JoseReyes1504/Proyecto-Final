@@ -1,5 +1,10 @@
 Integrantes
 
+Nombre: José Eduardo Reyes Suazo
+No Cta: 1504 2001 00088
+Usuario Github: JoseReyes1504
+Correo: eduardo.reyessuazo@hotmail.com
+
 Nombre: Adam Albert Garcia Montalvan
 No Cta: 1102 2000 00104
 Usuario Github: AdamFeldman504
@@ -14,3 +19,15 @@ Nombre: Roger Yovany Paz Velasquez
 No Cta: 1520 2001 00086
 Usuario Github: rogerPaz1213
 Correo: yobanyp64@gmail.com
+
+Nombre: Jatziry Alexandra Argueta Marquez
+No Cta: 0801 2002 20642
+Usuario Github: Argueta20642
+Correo: jata_argueta@unicah.edu
+
+
+Nombre: Sindy Marisela Meraz Turcios
+No Cta: 1522 2001 00350
+Usuario Github: smmeraz
+Correo: mariselameraza510@gmail.com
+
